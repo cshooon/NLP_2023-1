@@ -6,25 +6,22 @@
 * verified_reviews -> sentence
 ## Lab 2
 기존 코드에서 # 부분 코드 입력
-Step 0: Get the data
+```python
+# Step 0: Get the data
 x_data, y_target = get_toy_data(batch_size)
 
-Step 1: Clear the gradients
+# Step 1: Clear the gradients
+perceptron.zero_grad()
 
-* perceptron.zero_grad()
+# Step 2: Compute the forward pass of the model
+y_pred = perceptron(x_data).squeeze()
 
-Step 2: Compute the forward pass of the model
+# Step 3: Compute the loss value that we wish to optimize
+loss = bce_loss(y_pred, y_target)
 
-* y_pred = perceptron(x_data).squeeze()
+# Step 4: Propagate the loss signal backward
+loss.backward()
 
-Step 3: Compute the loss value that we wish to optimize
-
-* loss = bce_loss(y_pred, y_target)
-
-Step 4: Propagate the loss signal backward
-
-* loss.backward()
-
-Step 5: Trigger the optimizer to perform one update
-
-* optimizer.step()
+# Step 5: Trigger the optimizer to perform one update
+optimizer.step()
+```
